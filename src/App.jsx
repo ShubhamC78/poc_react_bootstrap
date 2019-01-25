@@ -8,7 +8,7 @@ import Navbar from './components/CustomNavbar';
 import Exercises from './components/exercise/Exercises';
 import { Header, Footer } from './components/layout';
 import { exercises, muscles } from './store';
-
+import { connect } from 'react-redux';
 {/* 
   
       for bootstrap code
@@ -37,16 +37,28 @@ class App extends Component {
 
   render() {
     const exercises = this.getExerciseByMuscles();
-    console.log("exercise" + exercises);
+   
     return (
       <div>
-        <Header />
+        {/* <Header />
         <Exercises exercises={exercises} />
-        <Footer muscles={muscles} />
-
+        <Footer muscles={muscles} /> */}
+        <Router>
+          <div>
+            <Navbar />
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/news" component={News} />
+          </div>
+        </Router>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state){
+  const { user } = state.login;
+  return { user };
+ }
+
+export default connect(mapStateToProps)(App);

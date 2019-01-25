@@ -42,7 +42,7 @@ class Footer extends React.Component {
         >
         <Tab label="All" />
           {muscles.map(groups => 
-          <Tab label={groups} />)}
+          <Tab label={groups}  />)}
         </Tabs>
       </Paper>
     );
